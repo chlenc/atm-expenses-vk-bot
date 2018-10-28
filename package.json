@@ -25,9 +25,5 @@
   "engines": {
     "node": "8.9.3",
     "npm": "6.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chlenc/vk_bot.git"
   }
 }
