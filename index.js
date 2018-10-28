@@ -1,9 +1,8 @@
-const PORT = '5000';
-const TOKEN = 'fed89ba9f0d888f4e6868c56dc1d4e8d59999b57080309aa855589d83d062d253a7e1a19a0963693c3107';
-const CONFIRMATION = '4f3f0814';
-const DIR = "expenses"
+const PORT = process.env.PORT || 5000;
+const TOKEN = process.env.TOKEN || 'fed89ba9f0d888f4e6868c56dc1d4e8d59999b57080309aa855589d83d062d253a7e1a19a0963693c3107';
+const CONFIRMATION = process.env.CONFIRMATION || '4f3f0814';
+const DIR = "expenses";
 
-// https://nameless-badlands-65161.herokuapp.com/
 
 const frases = require('./frases')
 const database = require('./database')
