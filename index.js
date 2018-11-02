@@ -88,8 +88,10 @@ bot.command('7am', ctx => {
             } else if (data.state === 'video6_1_pay') {
                 sendState(ctx, 'video6_1_pay', 'video1_1');
                 sendTimeoutState(ctx, "video1_1", "video1_2", 5000, true)//3600000
-                sendTimeoutState(ctx, "video1_2", "video6_2_pay", 10000)//3600000+25200000
-                sendTimeoutState(ctx, "video6_2_pay", "watch2", 15000)//3600000+25200000+25200000
+
+            }else if (data.state === 'video1_2') {
+                sendState(ctx, 'video1_2', 'video6_2_pay');
+                sendTimeoutState(ctx, "video6_2_pay", "watch2", 5000)//25200000
 
             }
 
