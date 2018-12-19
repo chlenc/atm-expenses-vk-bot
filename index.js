@@ -32,7 +32,7 @@ function sendState(ctx, thisState, nextState, about) {
         setTimeout(function () {
             console.log("about")
             bot.reply(+ctx.user_id, frases.homeTrigger)
-        }, 1000)//900000)
+        }, 900000)//900000)
     }
 }
 
@@ -82,7 +82,7 @@ schedule.scheduleJob('7 * * *', function () {
                 if (!error && data[temp].state !== undefined) {
                     if (data[temp].state === 'video5_pay') {
                         sendState(ctx, 'video5_pay', 'video4_1');
-                        sendTimeoutState(ctx, "video4_1", "video4_2", 5000, true)//129600000
+                        sendTimeoutState(ctx, "video4_1", "video4_2", 129600000, true)//129600000
                     } else if (data[temp].state === 'video4_2') {
                         sendState(ctx, 'video4_2', 'video4_3');
                     } else if (data[temp].state === 'video4_3') {
@@ -93,11 +93,11 @@ schedule.scheduleJob('7 * * *', function () {
                         sendState(ctx, 'video3_2', 'video6_1_pay');
                     } else if (data[temp].state === 'video6_1_pay') {
                         sendState(ctx, 'video6_1_pay', 'video1_1');
-                        sendTimeoutState(ctx, "video1_1", "video1_2", 5000, true)//3600000
+                        sendTimeoutState(ctx, "video1_1", "video1_2", 3600000, true)//3600000
 
                     } else if (data[temp].state === 'video1_2') {
                         sendState(ctx, 'video1_2', 'video6_2_pay');
-                        sendTimeoutState(ctx, "video6_2_pay", "watch2", 5000)//25200000
+                        sendTimeoutState(ctx, "video6_2_pay", "watch2", 25200000)//25200000
 
                     }
                     else if (data[temp].state === 'video1_2') {
@@ -176,7 +176,7 @@ bot.command('onpay1', function (ctx) {
 })
 bot.command('onwatch1', function (ctx) {
     sendState(ctx, 'video6_pay', 'video3_1');
-    sendTimeoutState(ctx, "video3_1", "video3_2", 5000, true)//172800000
+    sendTimeoutState(ctx, "video3_1", "video3_2", 172800000, true)//172800000
     console.log('========')
 
 })
@@ -210,7 +210,7 @@ app.post("/", function (req, res) {
                     break;
                 case 'watch1':
                     sendState(ctx, 'video6_pay', 'video3_1');
-                    sendTimeoutState(ctx, "video3_1", "video3_2", 5000, true)//172800000
+                    sendTimeoutState(ctx, "video3_1", "video3_2", 172800000, true)//172800000
                     break;
                 case 'watch2':
                     bot.reply(ctx.user_id, frases.video7_about);
