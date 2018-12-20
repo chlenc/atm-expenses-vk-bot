@@ -73,7 +73,7 @@ bot.command('test', function (ctx) {
 //=====================7am==================================
 //'7 * * *'
 //'1 * * * * *'
-schedule.scheduleJob('1 * * * * *', function () {
+schedule.scheduleJob('7 * * *', function () {
     database.getData(DIR + "/" + `users/vk/`, function (users, error) {
         if (users && !error) {
             for (var temp in users) {
