@@ -13,7 +13,7 @@ const app = express();
 
 const {Botact} = require('botact');
 
-const schedule = require('node-schedule');
+const schedule = require('node-schedule'); // !!!
 
 const bot = new Botact({
     confirmation: CONFIRMATION,
@@ -73,39 +73,40 @@ bot.command('test', function (ctx) {
 //=====================7am==================================
 //'7 * * *'
 //'1 * * * * *'
-schedule.scheduleJob('7 * * *', function () {
-    database.getData(DIR + "/" + `users/vk/`, function (data, error) {
-        if (data && !error) {
-            for (var temp in data) {
+schedule.scheduleJob('1 * * * * *', function () {
+    database.getData(DIR + "/" + `users/vk/`, function (users, error) {
+        if (users && !error) {
+            for (var temp in users) {
                 var ctx = {user_id: temp}
                 console.log(ctx)
-                if (!error && data[temp].state !== undefined) {
-                    if (data[temp].state === 'video5_pay') {
+                var data = users[temp]
+                if (!error && data.state !== undefined) {
+                    if (data.state === 'video5_pay') {
                         sendState(ctx, 'video5_pay', 'video4_1');
                         sendTimeoutState(ctx, "video4_1", "video4_2", 129600000, true)//129600000
-                    } else if (data[temp].state === 'video4_2') {
+                    } else if (data.state === 'video4_2') {
                         sendState(ctx, 'video4_2', 'video4_3');
-                    } else if (data[temp].state === 'video4_3') {
+                    } else if (data.state === 'video4_3') {
                         sendState(ctx, 'video4_3', 'video5_1_pay');
-                    } else if (data[temp].state === 'video5_1_pay') {
+                    } else if (data.state === 'video5_1_pay') {
                         sendState(ctx, 'video5_1_pay', 'watch1');
-                    } else if (data[temp].state === 'video3_2') {
+                    } else if (data.state === 'video3_2') {
                         sendState(ctx, 'video3_2', 'video6_1_pay');
-                    } else if (data[temp].state === 'video6_1_pay') {
+                    } else if (data.state === 'video6_1_pay') {
                         sendState(ctx, 'video6_1_pay', 'video1_1');
                         sendTimeoutState(ctx, "video1_1", "video1_2", 3600000, true)//3600000
 
-                    } else if (data[temp].state === 'video1_2') {
+                    } else if (data.state === 'video1_2') {
                         sendState(ctx, 'video1_2', 'video6_2_pay');
                         sendTimeoutState(ctx, "video6_2_pay", "watch2", 25200000)//25200000
 
                     }
-                    else if (data[temp].state === 'video1_2') {
+                    else if (data.state === 'video1_2') {
                         database.updateData(`${DIR}/users/vk/${ctx.user_id}`, {state: 'video1_3'});
                         frases.video1_2(ctx.user_id, function (link) {
                             ctx.reply(link)
                         });
-                    } else if (data[temp].state === 'video1_3') {
+                    } else if (data.state === 'video1_3') {
                         database.updateData(`${DIR}/users/vk/${ctx.user_id}`, {state: 'video5_pay'});
                         frases.video1_3(ctx.user_id, function (link) {
                             ctx.reply(link)
